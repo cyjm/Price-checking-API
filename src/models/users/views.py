@@ -24,9 +24,20 @@ def login_user():
 
     return render_template("user/login.html")
 
-@user_blueprint.route('/register')
+@user_blueprint.route('/register', methods=['GET','POST'])
 def register_user():
-    pass
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['hashed']
+
+        try:
+            if User.register_user(email,password):
+                session['email'] = email
+                return redirect(url_for(".user_alerts"))
+        except UserErrors.UserError as e:
+            return e.message
+
+    return render_template("user/register.html")
 
 @user_blueprint.route('/alerts')
 def user_alerts():
