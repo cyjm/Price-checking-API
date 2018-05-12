@@ -7,11 +7,10 @@ import src.models.users.errors as UserErrors
 user_blueprint = Blueprint('users', __name__)
 
 
-
-@user_blueprint.route('/login', methods=['GET','POST'])
+@user_blueprint.route('/login', methods=['GET', 'POST'])
 def login_user():
     if request.method == 'POST':
-        #check login is valid
+        # check login is valid
         email = request.form['email']
         password = request.form['hashed']
 
@@ -24,7 +23,8 @@ def login_user():
 
     return render_template("user/login.html")
 
-@user_blueprint.route('/register', methods=['GET','POST'])
+
+@user_blueprint.route('/register', methods=['GET', 'POST'])
 def register_user():
     if request.method == 'POST':
         email = request.form['email']
@@ -39,13 +39,16 @@ def register_user():
 
     return render_template("user/register.html")
 
+
 @user_blueprint.route('/alerts')
 def user_alerts():
     return "This is the alerts page."
 
+
 @user_blueprint.route('/logout')
 def logout_user():
     pass
+
 
 @user_blueprint.route('/check_alerts/<string:user_id>')
 def check_user_alerts(user_id):

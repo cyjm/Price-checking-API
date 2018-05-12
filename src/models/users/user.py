@@ -22,7 +22,7 @@ class User(object):
         :param password: a sha512 hashed password
         :return: True if valid
         """
-        user_data = Database.find_one("users", {"email":email}) #Password in sha512 -> pbkdf2_sha512
+        user_data = Database.find_one("users", {"email": email})  # Password in sha512 -> pbkdf2_sha512
         if user_data is None:
             # Tell user that their email doesn't exist in db'
             raise UserErrors.UserDontExistError('This email does not match any existing one in our database.')
@@ -44,11 +44,10 @@ class User(object):
         user_data = Database.find_one("users", {"email": email})
 
         if user_data is not None:
-            # email is registered already
-            pass
+            raise UserErrors.UserAlreadyRegisteredError('User with this username already exist.')
+
         if not Utils.email_is_valid(email):
-            # email is not a valid email
-            pass
+            raise UserErrors.InvalidEmail('Email is invalid.')
 
         User(email, Utils.hash_password(password)).save_to_db()
 
