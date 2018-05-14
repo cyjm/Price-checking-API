@@ -54,7 +54,7 @@ class User(object):
         return True
 
     def save_to_db(self):
-        Database.insert("users", self.json)
+        Database.insert("users", self.json())
 
     def json(self):
         return {

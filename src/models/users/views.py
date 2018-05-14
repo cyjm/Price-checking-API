@@ -10,12 +10,12 @@ user_blueprint = Blueprint('users', __name__)
 @user_blueprint.route('/login', methods=['GET', 'POST'])
 def login_user():
     if request.method == 'POST':
-        # check login is valid
+        # check if login is valid
         email = request.form['email']
         password = request.form['hashed']
 
         try:
-            if User.is_login_valid(email,password):
+            if User.is_login_valid(email, password):
                 session['email'] = email
                 return redirect(url_for(".user_alerts"))
         except UserErrors.UserError as e:
@@ -31,7 +31,7 @@ def register_user():
         password = request.form['hashed']
 
         try:
-            if User.register_user(email,password):
+            if User.register_user(email, password):
                 session['email'] = email
                 return redirect(url_for(".user_alerts"))
         except UserErrors.UserError as e:
