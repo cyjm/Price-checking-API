@@ -1,4 +1,7 @@
+from src.common.database import Database
 from src.models.alerts.alert import Alert
+
+Database.initialize()
 
 alert_needing_update = Alert.find_needing_updates()
 

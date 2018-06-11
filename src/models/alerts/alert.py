@@ -25,7 +25,7 @@ class Alert(object):
             data={
                 "from": AlertConstants.FROM,
                 "to": self.user_email,
-                "subject": "Price limit reached for {}.".format(self.item.name)
+                "subject": "Price limit reached for {}.".format(self.item.name),
                 "text": "We've found a deal! (link here)."
             }
         )
@@ -35,10 +35,11 @@ class Alert(object):
         last_updated_limit = datetime.datetime.utcnow() - datetime.timedelta(minutes=minutes_since_update)
         return [cls(**elem) for elem in Database.find(AlertConstants.COLLECTION,
                                                       {"last_checked":
-                                                           {"$gte": last_updated_limit}
+                                                           {"$lte": last_updated_limit}
                                                        })]
+
     def save_to_mongo(self):
-        Database.insert(AlertConstants.COLLECTION, self.json())
+        Database.update(AlertConstants.COLLECTION, {"_id": self._id}, self.json())
 
     def json(self):
         return {
