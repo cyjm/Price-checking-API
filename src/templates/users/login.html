@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <p>Nothing here yet!</p>
-
+    <div class="row justify-content-center">
+        <form class="card">
+            <div class="card-header">
+                Log in form
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="******">
+                </div>
+                <button type="submit" class="btn btn-default">Log in!</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}
