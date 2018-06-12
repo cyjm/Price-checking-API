@@ -21,7 +21,7 @@ def login_user():
         except UserErrors.UserError as e:
             return e.message
 
-    return render_template("user/login.html")
+    return render_template("users/login.html")
 
 
 @user_blueprint.route('/register', methods=['GET', 'POST'])
@@ -37,7 +37,7 @@ def register_user():
         except UserErrors.UserError as e:
             return e.message
 
-    return render_template("user/register.html")
+    return render_template("users/register.html")
 
 
 @user_blueprint.route('/alerts')
