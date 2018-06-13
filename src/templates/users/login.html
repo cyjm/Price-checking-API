@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="row justify-content-center">
-        <form class="card">
+        <form class="card" method="post" action="{{ url_for('users.login_user') }}">
             <div class="card-header">
                 Log in form
             </div>

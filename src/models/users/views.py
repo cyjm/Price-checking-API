@@ -28,7 +28,7 @@ def login_user():
 def register_user():
     if request.method == 'POST':
         email = request.form['email']
-        password = request.form['hashed']
+        password = request.form['password']
 
         try:
             if User.register_user(email, password):
