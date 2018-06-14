@@ -12,7 +12,7 @@ def login_user():
     if request.method == 'POST':
         # check if login is valid
         email = request.form['email']
-        password = request.form['hashed']
+        password = request.form['password']
 
         try:
             if User.is_login_valid(email, password):
