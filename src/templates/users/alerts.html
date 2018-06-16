@@ -9,7 +9,8 @@
         {% for alert in alerts %}
             <a href="#" class="list-group-item list-group-item-action">
                 <h5><strong>Alert for {{ alert.time.name }}</strong></h5>
-                <p class="list-group-text small">Last price found {{ alert.item.price }}</p>
+                <p class="list-group-text small">Last price found {{ alert.item.price }}<br/>
+                Last checked on {{ alert.last_cheched.strftime("%d-%m-%Y at %H:%M") }}</p>
             </a>
 
         {% endfor %}
